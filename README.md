@@ -108,11 +108,24 @@ Once the DOM is loaded the script:
 
 ## Webflow setup
 
-1. Add `fj-breadcrumb` / `list` as a custom attribute on your breadcrumb nav or wrapper element
-2. Add `fj-breadcrumb` / `item` on each breadcrumb link or item element
-3. Optionally add `fj-breadcrumb` / `name` or `fj-breadcrumb` / `link` if your structure requires it
+### Step 1 — Add the script
 
-If you have both a desktop and mobile breadcrumb on the same page, only the first `breadcrumb=list` element will be used — preventing duplicate schema output.
+Paste the `<script>` tag into **Project Settings → Custom Code → Head Code**, or into **Page Settings → Custom Code → Before </body> tag** for page-specific use.
+
+### Step 2 — Add attributes to your breadcrumb elements
+
+In the Webflow Designer, open the **Navigator** panel (Cmd/Ctrl + U) to locate the correct elements. Select each element, open the **Element Settings** panel (D key), scroll down to **Custom Attributes**, and add the attribute name and value.
+
+| Element | Where to find it in Navigator | Attribute | Value |
+|---|---|---|---|
+| Breadcrumb wrapper | The Nav element or Div Block containing all breadcrumb items | `fj-breadcrumb` | `list` |
+| Each breadcrumb item | Each Link Block, Text Link, or Div Block inside the wrapper | `fj-breadcrumb` | `item` |
+| Label element (optional) | A Text Block inside a breadcrumb item, if text is separate from the link | `fj-breadcrumb` | `name` |
+| Link element (optional) | A Link Block inside a breadcrumb item, if the link is nested inside a Div | `fj-breadcrumb` | `link` |
+
+The `name` and `link` attributes are only needed if your breadcrumb items use a nested structure (Div → Link + Text). If each item is a plain Link Block, the script reads the href and text automatically.
+
+If you have both a desktop and mobile breadcrumb on the same page, only the first `fj-breadcrumb=list` element will be used — preventing duplicate schema output.
 
 ---
 
